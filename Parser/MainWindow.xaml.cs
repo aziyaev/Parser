@@ -32,6 +32,7 @@ namespace Parser
 
             InitializeComponent();
             lvSheet.ItemsSource = XlFile.Sheet;
+            ShortInfoList.ItemsSource = XlFile.Sheet;
         }
 
         private void ParseButton_Click(object sender, RoutedEventArgs e)

@@ -82,7 +82,7 @@ namespace Parser
         public void SaveTable()
         {
             WorkExcel = new Excel.Application();
-            string filepath = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "listAlert.xlsx";
+            string filepath = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "1.xlsx";
 
             Excel.Workbook workBook = WorkExcel.Workbooks.Add();
             Excel.Worksheet workSheet = (Excel.Worksheet)workBook.ActiveSheet;
