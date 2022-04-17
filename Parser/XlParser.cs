@@ -16,40 +16,33 @@ namespace Parser
         public Excel.Application WorkExcel { get; set; }
         public XLWorkbook Workbook { get; set; }
 
-        public XlParser()
+        public XlParser(bool isDownload = false)
         {
             string link = "https://bdu.fstec.ru/files/documents/thrlist.xlsx";
-            string path = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "listAlert.xlsx";
+            string path = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3);
 
-            if (!File.Exists(path))
+            if (!File.Exists(path + "listAlert.xlsx") || isDownload)
             {
                 WorkExcel = new Excel.Application();
                 Excel.Workbook wb = WorkExcel.Workbooks.Open(link);
-                wb.SaveAs(path);
+                if (isDownload) 
+                {
+                    wb.SaveAs(path + "newListAlert.xlsx");
+                    wb.SaveAs(path + "listAlert.xlsx");
+                }  
+                else wb.SaveAs(path + "listAlert.xlsx");
                 wb.Close();
                 WorkExcel.Quit();
             }
 
-            Workbook = new XLWorkbook(path);
-            //OpenLink(objWorkExcel, link, out Excel.Workbook workBook);
-            //WorkBook = workExcel.Workbooks.Open(link);
-        }
-
-        public XlParser(bool isDowload)
-        {
-            string link = "https://bdu.fstec.ru/files/documents/thrlist.xlsx";
-            string path = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "listAlert.xlsx";
-
-            if (isDowload)
+            if (isDownload)
             {
-                WorkExcel = new Excel.Application();
-                Excel.Workbook wb = WorkExcel.Workbooks.Open(link);
-                wb.SaveAs(path);
-                wb.Close();
-                WorkExcel.Quit();
+                Workbook = new XLWorkbook(path + "newListAlert.xlsx");
             }
-
-            Workbook = new XLWorkbook(path);
+            else
+            {
+                Workbook = new XLWorkbook(path + "listAlert.xlsx");
+            }
             //OpenLink(objWorkExcel, link, out Excel.Workbook workBook);
             //WorkBook = workExcel.Workbooks.Open(link);
         }

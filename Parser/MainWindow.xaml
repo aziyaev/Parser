@@ -34,7 +34,7 @@
             <Grid Grid.Column="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Image Margin="10" Source="Resources/Table.png" Width="30" HorizontalAlignment="Right"/>
-                    <Button Margin="10,0,20,0" x:Name="LoadButton" Click="LoadButton_Click" Content="Загрузить" BorderThickness="0" Background="#28719e" FontSize="15" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Center"/>
+                    <Button Margin="10,0,20,0" x:Name="LoadButton" Click="HistoryButton_Click" Content="История" BorderThickness="0" Background="#28719e" FontSize="15" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Center"/>
 
                 </StackPanel>
             </Grid>
@@ -65,7 +65,7 @@
                         Инфомация
                     </TextBox>
                     <Grid Grid.Row="1" Margin="0, 0, 0, 20">
-                        <TextBox TextWrapping="Wrap" FontSize="14" BorderThickness="0" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana">
+                        <TextBox TextWrapping="Wrap" IsReadOnly="True" FontSize="14" BorderThickness="0" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana">
                             <Binding Path="CurrentNote">
                                 <Binding.StringFormat>Запись: {0}</Binding.StringFormat>
                             </Binding>

@@ -24,6 +24,7 @@ namespace Parser
         private ChangeInfoWindow changeInfoWindow;
         private XlFile file { get; }
         private PagingCollectionView pagingCollectionView;
+        private string messageUpdate = "";
 
 
         public MainWindow()
@@ -43,16 +44,16 @@ namespace Parser
             {
                 changeInfoWindow.Close();
             }
-            changeInfoWindow = new ChangeInfoWindow(file.UpdateTable());
+            messageUpdate = file.UpdateTable();
+            changeInfoWindow = new ChangeInfoWindow(messageUpdate);
             changeInfoWindow.Show();
 
             pagingCollectionView.Refresh();
-            file.SaveToLocalDB();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            file.SaveToLocalDB();
+            file.SaveTable();
         }
 
         private void ShortInfoButton_Click(object sender, RoutedEventArgs e)
@@ -60,9 +61,14 @@ namespace Parser
             pagingCollectionView.CurrentNote = DataGrid1.SelectedItem.ToString();
         }
 
-        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        private void HistoryButton_Click(object sender, RoutedEventArgs e)
         {
-            file.SaveTable();
+            if(changeInfoWindow != null)
+            {
+                changeInfoWindow.Close();
+            }
+            changeInfoWindow = new ChangeInfoWindow(messageUpdate);
+            changeInfoWindow.Show();
         }
 
         private void OnNextClicked(object sender, RoutedEventArgs e)
