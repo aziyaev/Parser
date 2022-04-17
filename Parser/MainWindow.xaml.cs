@@ -73,5 +73,10 @@ namespace Parser
         {
             this.pagingCollectionView.MoveToPreviousPage();
         }
+
+        private void DataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            pagingCollectionView.CurrentNote = DataGrid1.SelectedItem.ToString();
+        }
     }
 }

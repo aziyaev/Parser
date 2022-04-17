@@ -82,7 +82,7 @@ namespace Parser
         public void SaveTable()
         {
             WorkExcel = new Excel.Application();
-            string filepath = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "1.xlsx";
+            string filepath = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "listAlert.xlsx";
 
             Excel.Workbook workBook = WorkExcel.Workbooks.Add();
             Excel.Worksheet workSheet = (Excel.Worksheet)workBook.ActiveSheet;
@@ -137,6 +137,7 @@ namespace Parser
 
                 if(DialogResult.OK == exportFile.ShowDialog())
                 {
+                    filepath = exportFile.FileName;
                     workBook.SaveAs(filepath, Excel.XlFileFormat.xlOpenXMLWorkbook, 
                         Missing.Value, Missing.Value, false, false, 
                         Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlUserResolution, 
