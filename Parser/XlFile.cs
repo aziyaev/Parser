@@ -15,7 +15,6 @@ namespace Parser
 {
     public class XlFile : IXlFile
     {
-        private string filepath = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3) + "listAlert.xlsx";
         public static List<Note> Sheet { get; set; } = new List<Note>();
 
         public XlFile()
@@ -85,7 +84,7 @@ namespace Parser
 
                 if(DialogResult.OK == exportFile.ShowDialog())
                 {
-                    filepath = exportFile.FileName;
+                    string filepath = exportFile.FileName;
                     table.Workbook.SaveAs(filepath);
                 }
             }

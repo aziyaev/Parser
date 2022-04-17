@@ -19,7 +19,7 @@ namespace Parser
         public XlParser(bool isDownload = false)
         {
             string link = "https://bdu.fstec.ru/files/documents/thrlist.xlsx";
-            string path = Path.GetFullPath("..").Substring(0, Path.GetFullPath("..").Length - 3);
+            string path = Path.GetFullPath(".") + "\\";
 
             if (!File.Exists(path + "listAlert.xlsx") || isDownload)
             {
