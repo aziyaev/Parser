@@ -74,51 +74,10 @@ namespace Parser
 
         public void SaveTable()
         {
+            XlParser table = LoadTable(out string message);
+
             
-
-            /*
-            Excel.Range headerTextRange = workSheet.get_Range("A1", "E1");
-            headerTextRange.WrapText = true;
-
-            headerTextRange = workSheet.get_Range("F1", "H1");
-            headerTextRange.WrapText = true;
-
-            headerTextRange = workSheet.get_Range("I1", "J1");
-            headerTextRange.WrapText = true;
-
-            workSheet.Cells[headerIndex, 1] = "Общая информация";
-            workSheet.Cells[headerIndex, 6] = "Последствия";
-            workSheet.Cells[headerIndex, 9] = "Дополнительно";
-
-
-            headerIndex++;
-            workSheet.Cells[headerIndex, 1] = "Идентификатор УБИ";
-            workSheet.Cells[headerIndex, 2] = "Наименование УБИ";
-            workSheet.Cells[headerIndex, 3] = "Описание";
-            workSheet.Cells[headerIndex, 4] = "Источник угрозы (характеристика и потенциал нарушителя)";
-            workSheet.Cells[headerIndex, 5] = "Объект воздействия";
-            workSheet.Cells[headerIndex, 6] = "Нарушение конфиденциальности";
-            workSheet.Cells[headerIndex, 7] = "Нарушение целостности";
-            workSheet.Cells[headerIndex, 8] = "Нарушение доступности";
-            workSheet.Cells[headerIndex, 9] = "Дата включения угрозы в БнД УБИ";
-            workSheet.Cells[headerIndex, 10] = "Дата последнего изменения данных";
-
-            int rowIndex = 3;
-            foreach(Note note in Sheet)
-            {
-                workSheet.Cells[rowIndex, 1] = note.Id;
-                workSheet.Cells[rowIndex, 2] = note.Name;
-                workSheet.Cells[rowIndex, 3] = note.Description;
-                workSheet.Cells[rowIndex, 4] = note.Source;
-                workSheet.Cells[rowIndex, 5] = note.Threat;
-                workSheet.Cells[rowIndex, 6] = note.IsNotConfidential;
-                workSheet.Cells[rowIndex, 7] = note.IsComplete;
-                workSheet.Cells[rowIndex, 8] = note.IsAccessible;
-                workSheet.Cells[rowIndex, 9] = note.DateIn;
-                workSheet.Cells[rowIndex, 10] = note.DateRewrite;
-                rowIndex++;
-            }
-
+            
             using (SaveFileDialog exportFile = new SaveFileDialog())
             {
                 exportFile.Title = "Экспорт файла";
@@ -127,21 +86,14 @@ namespace Parser
                 if(DialogResult.OK == exportFile.ShowDialog())
                 {
                     filepath = exportFile.FileName;
-                    workBook.SaveAs(filepath, Excel.XlFileFormat.xlOpenXMLWorkbook, 
-                        Missing.Value, Missing.Value, false, false, 
-                        Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlUserResolution, 
-                        true, Missing.Value, Missing.Value, Missing.Value);
-                    workBook.Saved = true;
-
-
+                    table.Workbook.SaveAs(filepath);
                 }
-            }*/
+            }
         }
 
         private XLWorkbook WorksheetFill(XLWorkbook workbook)
         {
-            var worksheet = workbook.Worksheet(1);
-            var rows = worksheet.RangeUsed().RowsUsed();
+            var worksheet = workbook.Worksheets.Add("Список угроз");
 
             worksheet.Cell("A1").Value = "Общая информация";
             worksheet.Cell("F1").Value = "Последствия";
@@ -171,7 +123,7 @@ namespace Parser
             int index = 3;
             foreach(Note note in Sheet)
             {
-                worksheet.Cell($"A{index}").Value = note.Id.ToString();
+                worksheet.Cell($"A{index.ToString()}").Value = note.Id.ToString();
                 worksheet.Cell($"B{index}").Value = note.Name;
                 worksheet.Cell($"C{index}").Value = note.Description.ToString();
                 worksheet.Cell($"D{index}").Value = note.Source;

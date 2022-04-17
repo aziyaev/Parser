@@ -27,6 +27,7 @@ namespace Parser
 
         public ChangeInfoWindow(string message)
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.message = message;
             InitializeComponent();
 

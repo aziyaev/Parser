@@ -7,7 +7,7 @@ using System.Text;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
 using System.Collections.Generic;
-
+using System.Reflection;
 
 namespace Parser
 {
@@ -27,10 +27,19 @@ namespace Parser
                 Excel.Workbook wb = WorkExcel.Workbooks.Open(link);
                 if (isDownload) 
                 {
-                    wb.SaveAs(path + "newListAlert.xlsx");
-                    wb.SaveAs(path + "listAlert.xlsx");
+                    wb.SaveAs(path + "newListAlert.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook,
+                        Missing.Value, Missing.Value, false, false,
+                        Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlUserResolution,
+                        true, Missing.Value, Missing.Value, Missing.Value);
+                    wb.SaveAs(path + "listAlert.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook,
+                        Missing.Value, Missing.Value, false, false,
+                        Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlUserResolution,
+                        true, Missing.Value, Missing.Value, Missing.Value);
                 }  
-                else wb.SaveAs(path + "listAlert.xlsx");
+                else wb.SaveAs(path + "listAlert.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook,
+                        Missing.Value, Missing.Value, false, false,
+                        Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlUserResolution,
+                        true, Missing.Value, Missing.Value, Missing.Value);
                 wb.Close();
                 WorkExcel.Quit();
             }
