@@ -1,0 +1,101 @@
+﻿<Window x:Class="Parser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Parser"
+        mc:Ignorable="d"
+        Title="" Height="900" Width="1600" MinHeight="450" MinWidth="800"
+        Icon="Resources/iconParse.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#28719e"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="3.6*"/>
+                <ColumnDefinition Width="1.4*"/>
+            </Grid.ColumnDefinitions>
+            <!-- <Image Grid.Column="0" Grid.Row="0" Width="35" Height="35">
+                <Image.Source>
+                    <FormatConvertedBitmap x:Name="IconImage" Source="Resources/publii-icon.png"/>
+                </Image.Source>
+            </Image>-->
+            <Grid Grid.Row="0" Margin="10">
+                <TextBox Grid.Row="0" BorderThickness="0" Height="48" Background="#28719e" FontSize="25" IsReadOnly="True" FontFamily="Verdana" FontWeight="Bold" Foreground="Wheat" VerticalAlignment="Top">
+                    PARSER
+                </TextBox>
+            </Grid>
+            
+            <Grid Grid.Column="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Image Margin="10" Source="Resources/Table.png" Width="30" HorizontalAlignment="Right"/>
+                    <Button Margin="10,0,20,0" x:Name="LoadButton" Click="LoadButton_Click" Content="Загрузить" BorderThickness="0" Background="#28719e" FontSize="15" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Center"/>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="#d3dfe3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" MinHeight="160"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="20,20,0,0">
+                    <Button x:Name="ParseButton" Click="ParseButton_Click" Content="Обновить" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
+                    <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Сохранить" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
+                    <Button x:Name="ShortInfoButton" Click="ShortInfoButton_Click" Content="Угрозы" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" BorderBrush="#28719e" Height="48" Background="#28719e" FontSize="25" IsReadOnly="True" FontFamily="Verdana" FontWeight="Bold" Foreground="Wheat" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        Инфомация
+                    </TextBox>
+                    <ListView Grid.Row="1" x:Name="ShortInfoList" FontSize="14" FontFamily="Verdana">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">ID</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="300">Наименование</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Column="1" Margin="20" Background="#edf3f5">
+                <ListView x:Name="lvSheet" FontSize="14" FontFamily="Verdana" HorizontalAlignment="Center">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False" x:Name="gridView1">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">ID</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="120">Наименование</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="200">Описание</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Source}" Width="200">Источник</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Threat}" Width="200">Объект воздействия</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=IsNotConfidential}" Width="80">Нарушение конфиденциальности</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=IsComplete}" Width="80">Нарушение целостности</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=IsAccessible}" Width="80">Нарушение доступа</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateIn}" Width="100">Дата создания</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateRewrite}" Width="100">Дата изменения</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>

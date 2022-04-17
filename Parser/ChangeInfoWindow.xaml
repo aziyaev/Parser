@@ -1,0 +1,82 @@
+﻿<Window x:Class="Parser.ChangeInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Parser"
+        mc:Ignorable="d"
+        Title="" Height="900" Width="1600" MinHeight="450" MinWidth="800"
+        Icon="Resources/iconParse.ico">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox IsReadOnly="True" HorizontalAlignment="Center" FontSize="14" BorderThickness="0" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" >
+                    Количество измененных записей
+                </TextBox>
+                <TextBox x:Name="changedCount" IsReadOnly="True" HorizontalAlignment="Center" FontSize="14" BorderThickness="0" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" >
+                    0
+                </TextBox>
+            </StackPanel>
+            <TextBox Grid.Column="1" x:Name="statusTextBox" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" FontSize="20" FontFamily="Verdana">
+                status
+            </TextBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" x:Name="lvSheetOld">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">ID</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Наименование</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="100">Описание</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Source}" Width="100">Источник</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Threat}" Width="100">Объект воздействия</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IsNotConfidential}" Width="80">Нарушение конфиденциальности</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IsComplete}" Width="80">Нарушение целостности</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IsAccessible}" Width="80">Нарушение доступа</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DateIn}" Width="60">Дата создания</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DateRewrite}" Width="60">Дата изменения</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView Grid.Column="1" x:Name="lvSheetNew">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">ID</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Наименование</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="100">Описание</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Source}" Width="100">Источник</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Threat}" Width="100">Объект воздействия</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IsNotConfidential}" Width="80">Нарушение конфиденциальности</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IsComplete}" Width="80">Нарушение целостности</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IsAccessible}" Width="80">Нарушение доступа</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DateIn}" Width="60">Дата создания</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=DateRewrite}" Width="60">Дата изменения</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Button x:Name="OkButton" Click="OkButton_Click" Content="Ок" HorizontalContentAlignment="Center" BorderThickness="0" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana"/>
+
+        </Grid>
+        
+    </Grid>
+</Window>
