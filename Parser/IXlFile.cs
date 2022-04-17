@@ -6,7 +6,7 @@ namespace Parser
     {
         void OpenTable();
         void SaveTable();
-        XlParser LoadTable(out string message);
+        XlParser LoadTable(out string message, bool isDowload);
         string UpdateTable();
     }
 }

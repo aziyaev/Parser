@@ -46,12 +46,13 @@ namespace Parser
             changeInfoWindow = new ChangeInfoWindow(file.UpdateTable());
             changeInfoWindow.Show();
 
-            
+            pagingCollectionView.Refresh();
+            file.SaveToLocalDB();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            file.SaveToLocalDB();
         }
 
         private void ShortInfoButton_Click(object sender, RoutedEventArgs e)

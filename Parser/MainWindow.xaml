@@ -54,7 +54,7 @@
                 <StackPanel Grid.Row="0" Margin="20,20,0,0">
                     <Button x:Name="ParseButton" Click="ParseButton_Click" Content="Обновить" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
                     <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Сохранить" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
-                    <Button x:Name="ShortInfoButton" Click="ShortInfoButton_Click" Content="Угрозы" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
+                    <Button x:Name="ShortInfoButton" Click="ShortInfoButton_Click" Content="Просмотреть" Margin="7" BorderThickness="0" Background="#d3dfe3" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" HorizontalContentAlignment="Left"/>
                 </StackPanel>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
