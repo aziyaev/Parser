@@ -14,7 +14,7 @@ namespace Parser
 {
     public class XlFile : IXlFile
     {
-        public static ObservableCollection<Note> Sheet { get; set; } = new ObservableCollection<Note>();
+        public static List<Note> Sheet { get; set; } = new List<Note>();
         private Excel.Application WorkExcel { get; set; }
 
         public XlFile()
@@ -176,7 +176,7 @@ namespace Parser
                         || noteSheet.IsComplete != noteTemp.IsComplete
                         || noteSheet.IsAccessible != noteTemp.IsAccessible))
                     {
-                        ChangeInfoWindow.notesOld.Add(new Note(noteSheet.Id, 
+                        ChangeInfoWindow.notesOld.Add(new Note(noteSheet.Id, noteSheet.IdInfo, 
                             noteSheet.Name, noteSheet.Description, noteSheet.Source, 
                             noteSheet.Threat, noteSheet.IsNotConfidential, noteSheet.IsComplete, 
                             noteSheet.IsAccessible, noteSheet.DateIn, noteSheet.DateRewrite));
@@ -239,6 +239,7 @@ namespace Parser
                 try
                 {
                     int id = Convert.ToInt32(workSheet.Cells[i, 1].Text.ToString());
+                    string idInfo = $"УБИ.{id.ToString()}";
                     string name = workSheet.Cells[i, 2].Text.ToString();
                     string description = workSheet.Cells[i, 3].Text.ToString();
                     string source = workSheet.Cells[i, 4].Text.ToString();
@@ -260,7 +261,7 @@ namespace Parser
                     }
                     string dateIn = workSheet.Cells[i, 9].Text.ToString();
                     string dateRewrite = workSheet.Cells[i, 9].Text.ToString();
-                    list.Add(new Note(id, name, description, source, threat, isNotConfidential, isComplete, isAccessible, dateIn, dateRewrite));
+                    list.Add(new Note(id, idInfo, name, description, source, threat, isNotConfidential, isComplete, isAccessible, dateIn, dateRewrite));
                 }
                 catch (Exception)
                 {

@@ -59,40 +59,57 @@
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <TextBox Grid.Row="0" BorderBrush="#28719e" Height="48" Background="#28719e" FontSize="25" IsReadOnly="True" FontFamily="Verdana" FontWeight="Bold" Foreground="Wheat" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                         Инфомация
                     </TextBox>
-                    <ListView Grid.Row="1" x:Name="ShortInfoList" FontSize="14" FontFamily="Verdana">
-                        <ListView.View>
-                            <GridView AllowsColumnReorder="False">
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">ID</GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="300">Наименование</GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <Grid Grid.Row="1" Margin="0, 0, 0, 20">
+                        <TextBox TextWrapping="Wrap" FontSize="14" BorderThickness="0" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana">
+                            <Binding Path="CurrentNote">
+                                <Binding.StringFormat>Запись: {0}</Binding.StringFormat>
+                            </Binding>
+                        </TextBox>
+
+                    </Grid>
+                    
                 </Grid>
             </Grid>
-            
-            <Grid Grid.Column="1" Margin="20" Background="#edf3f5">
-                <ListView x:Name="lvSheet" FontSize="14" FontFamily="Verdana" HorizontalAlignment="Center">
-                    <ListView.View>
-                        <GridView AllowsColumnReorder="False" x:Name="gridView1">
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">ID</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="120">Наименование</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="200">Описание</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Source}" Width="200">Источник</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Threat}" Width="200">Объект воздействия</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=IsNotConfidential}" Width="80">Нарушение конфиденциальности</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=IsComplete}" Width="80">Нарушение целостности</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=IsAccessible}" Width="80">Нарушение доступа</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateIn}" Width="100">Дата создания</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateRewrite}" Width="100">Дата изменения</GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
 
+            <Grid Grid.Column="1" Margin="20" Background="#d3dfe3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid x:Name="DataGrid1" ItemsSource="{Binding}" Grid.Row="0" IsReadOnly="True" RowHeight="40" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Идентификатор угрозы" Width="*" Binding="{Binding IdInfo}"/>
+                        <DataGridTextColumn Header="Наименование угрозы" Width="5*" Binding="{Binding Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid Grid.Row="1" VerticalAlignment="Top" Background="#d3dfe3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Center" FontSize="14" BorderThickness="0" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana">
+                        <Label.Content>
+                            <Binding Path="CurrentPage">
+                                <Binding.StringFormat>Страница: {0}</Binding.StringFormat>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
+                    <Grid Grid.Row="1" Background="#d3dfe3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Назад" Click="OnPreviousClicked" Margin="2" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana"/>
+                        <Button Grid.Column="1" Content="Вперед" Click="OnNextClicked" Margin="2" FontSize="20" Foreground="#2f3233" FontWeight="Bold" FontFamily="Verdana"/>
+                    </Grid>
+
+                </Grid>
 
             </Grid>
         </Grid>

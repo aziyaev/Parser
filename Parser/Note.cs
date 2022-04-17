@@ -3,6 +3,7 @@
     public class Note
     {
         public int Id { get; set; }
+        public string IdInfo { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Source { get; set; }
@@ -13,9 +14,10 @@
         public string DateIn { get; set; }
         public string DateRewrite { get; set; }
 
-        public Note(int id, string name, string description, string source, string threat, string isNotConfidential, string isComplete, string isAccessible, string dateIn, string dateRewrite)
+        public Note(int id, string idInfo, string name, string description, string source, string threat, string isNotConfidential, string isComplete, string isAccessible, string dateIn, string dateRewrite)
         {
             Id = id;
+            IdInfo = idInfo;
             Name = name;
             Description = description;
             Source = source;
@@ -29,7 +31,10 @@
 
         public override string ToString()
         {
-            return $"{Id}, {Name}";
+            return $"{IdInfo}\n\nНаименование: {Name}\n\nОписание: {Description}\n\n" +
+                $"Источник: {Source}\n\nОбъект воздействия: {Threat}\n\n" +
+                $"Нарушение конфиденциальности: {IsNotConfidential}\n\nНарушение целостности: {IsComplete}\n\nНарушение доступности: {IsAccessible}\n\n" +
+                $"Дата создания: {DateIn}\n\nДата изменения: {DateRewrite}";
         }
     }
 }

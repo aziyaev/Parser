@@ -23,7 +23,8 @@ namespace Parser
     {
         private ChangeInfoWindow changeInfoWindow;
         private XlFile file { get; }
-        
+        private PagingCollectionView pagingCollectionView;
+
 
         public MainWindow()
         {
@@ -31,13 +32,13 @@ namespace Parser
             file = new XlFile();
 
             InitializeComponent();
-            lvSheet.ItemsSource = XlFile.Sheet;
-            ShortInfoList.ItemsSource = XlFile.Sheet;
+
+            this.pagingCollectionView = new PagingCollectionView(XlFile.Sheet);
+            this.DataContext = this.pagingCollectionView;
         }
 
         private void ParseButton_Click(object sender, RoutedEventArgs e)
         {
-            
             if (changeInfoWindow != null)
             {
                 changeInfoWindow.Close();
@@ -55,7 +56,7 @@ namespace Parser
 
         private void ShortInfoButton_Click(object sender, RoutedEventArgs e)
         {
-
+            pagingCollectionView.CurrentNote = DataGrid1.SelectedItem.ToString();
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,14 @@ namespace Parser
             file.SaveTable();
         }
 
+        private void OnNextClicked(object sender, RoutedEventArgs e)
+        {
+            this.pagingCollectionView.MoveToNextPage();
+        }
 
+        private void OnPreviousClicked(object sender, RoutedEventArgs e)
+        {
+            this.pagingCollectionView.MoveToPreviousPage();
+        }
     }
 }

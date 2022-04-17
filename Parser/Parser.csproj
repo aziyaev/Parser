@@ -114,6 +114,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PagingCollectionView.cs" />
     <Compile Include="XlFile.cs" />
     <Compile Include="XlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
