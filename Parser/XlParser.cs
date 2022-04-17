@@ -53,8 +53,6 @@ namespace Parser
             {
                 Workbook = new XLWorkbook(path + "listAlert.xlsx");
             }
-            //OpenLink(objWorkExcel, link, out Excel.Workbook workBook);
-            //WorkBook = workExcel.Workbooks.Open(link);
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Parser
         private string message;
         public static ObservableCollection<Note> notesOld { get; set; } = new ObservableCollection<Note>();
         public static ObservableCollection<Note> notesNew { get; set; } = new ObservableCollection<Note>();
-        //public static bool isClosed { get; set; } = false;
 
         public ChangeInfoWindow(string message)
         {
@@ -44,7 +43,6 @@ namespace Parser
             {
                 statusTextBox.Foreground = Brushes.Red;
             }
-            //this.Closed += MainWindow_Closed;
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)

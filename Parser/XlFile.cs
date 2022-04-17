@@ -25,25 +25,10 @@ namespace Parser
 
         public XlParser LoadTable(out string message, bool isDowload = false)
         {
-            //WorkExcel = new Excel.Application();
-            if (isDowload)
-            {
-                try
-                {
-                    message = "Успешно";
-                    return new XlParser(isDowload);
-                }
-                catch (Exception)
-                {
-                    message = "Ошибка";
-                    return null;
-                }
-            }
-
             try
             {
                 message = "Успешно";
-                return new XlParser();
+                return new XlParser(isDowload);
             }
             catch (Exception)
             {
@@ -55,13 +40,7 @@ namespace Parser
 
         public void OpenTable()
         {
-            
-
             XlParser table = LoadTable(out string message);
-
-            //Excel.Workbook workBook = WorkExcel.Workbooks.Open(filepath);
-            //Excel.Worksheet workSheet = (Excel.Worksheet)workBook.Sheets[1];
-
             List<Note> notes = ConvertTable(table.Workbook);
 
             foreach(Note note in notes)
@@ -86,54 +65,6 @@ namespace Parser
                     table.Workbook.SaveAs(filepath);
                 }
             }
-        }
-
-        private XLWorkbook WorksheetFill(XLWorkbook workbook)
-        {
-            var worksheet = workbook.Worksheets.Add("Список угроз");
-
-            worksheet.Cell("A1").Value = "Общая информация";
-            worksheet.Cell("F1").Value = "Последствия";
-            worksheet.Cell("I1").Value = "Дополнительно";
-
-            var rngtable1 = worksheet.Range("A1:E1");
-            rngtable1.Merge();
-
-            var rngtable2 = worksheet.Range("F1:H1");
-            rngtable2.Merge();
-
-            var rngtable3 = worksheet.Range("I1:J1");
-            rngtable3.Merge();
-
-
-            worksheet.Cell("A2").Value = "Идентификатор УБИ";
-            worksheet.Cell("B2").Value = "Наименование УБИ";
-            worksheet.Cell("C2").Value = "Описание";
-            worksheet.Cell("D2").Value = "Источник угрозы (характеристика и потенциал нарушителя)";
-            worksheet.Cell("E2").Value = "Объект воздействия";
-            worksheet.Cell("F2").Value = "Нарушение конфиденциальности";
-            worksheet.Cell("G2").Value = "Нарушение целостности";
-            worksheet.Cell("H2").Value = "Нарушение доступности";
-            worksheet.Cell("I2").Value = "Дата включения угрозы в БнД УБИ";
-            worksheet.Cell("J2").Value = "Дата последнего изменения данных";
-
-            int index = 3;
-            foreach(Note note in Sheet)
-            {
-                worksheet.Cell($"A{index.ToString()}").Value = note.Id.ToString();
-                worksheet.Cell($"B{index}").Value = note.Name;
-                worksheet.Cell($"C{index}").Value = note.Description.ToString();
-                worksheet.Cell($"D{index}").Value = note.Source;
-                worksheet.Cell($"E{index}").Value = note.Threat;
-                worksheet.Cell($"F{index}").Value = note.IsNotConfidential;
-                worksheet.Cell($"G{index}").Value = note.IsComplete;
-                worksheet.Cell($"H{index}").Value = note.IsAccessible;
-                worksheet.Cell($"I{index}").Value = note.DateIn;
-                worksheet.Cell($"J{index}").Value = note.DateRewrite;
-            }
-
-            return workbook;
-
         }
 
         public string UpdateTable()
