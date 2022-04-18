@@ -1,4 +1,5 @@
 <img src="https://github.com/aziyaev/Parser/blob/master/Parser/Resources/iconParse.ico" width="50" alt="parserIco"/>
+
 # Parser
 
 **Test task from nyss**
@@ -10,5 +11,6 @@ This is an application for automatic parsing of information from the Internet. T
 [Data Resource](https://bdu.fstec.ru)
 
 **Application**
+
 
 ![window](https://github.com/aziyaev/Parser/blob/master/Parser/Resources/MainWindowScreen.png)
