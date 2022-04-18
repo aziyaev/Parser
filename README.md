@@ -2,7 +2,7 @@
 
 # Parser
 
-**Test task from nyss**
+**Education project from NowYouSeeSharp courses**
 
 ### What can you do with this?
 
